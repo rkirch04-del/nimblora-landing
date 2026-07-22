@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Nimblora builds conversion-focused websites and practical AI automations that help service businesses win leads and save time." />
+  <meta name="theme-color" content="#0b1020" />
+  <meta property="og:title" content="Nimblora — Websites that sell. Systems that scale." />
+  <meta property="og:description" content="Conversion websites and AI automation for ambitious service businesses." />
+  <meta property="og:type" content="website" />
+  <title>Nimblora — Websites & AI Automation</title>
+  <style>
+    :root {
+      --bg: #070b16;
+      --bg-soft: #0d1324;
+      --panel: rgba(18, 27, 49, 0.72);
+      --panel-solid: #111a30;
+      --text: #f6f7fb;
+      --muted: #aab3c7;
+      --line: rgba(255,255,255,.10);
+      --primary: #8b7cff;
+      --primary-2: #48d7c6;
+      --accent: #ffcc6a;
+      --success: #7ce8b6;
+      --shadow: 0 24px 80px rgba(0,0,0,.34);
+      --radius: 22px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(139,124,255,.18), transparent 32%),
+        radial-gradient(circle at 88% 18%, rgba(72,215,198,.12), transparent 28%),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    img, svg { display: block; max-width: 100%; }
+
+    .container { width: min(calc(100% - 40px), var(--max)); margin-inline: auto; }
+    .section { padding: 100px 0; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #d8d3ff;
+      font-size: .78rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { line-height: 1.05; letter-spacing: -.04em; }
+    h1 { font-size: clamp(3.2rem, 8vw, 6.7rem); margin-bottom: 24px; }
+    h2 { font-size: clamp(2.4rem, 5vw, 4.4rem); margin-bottom: 22px; }
+    h3 { font-size: 1.45rem; }
+    .lead { color: var(--muted); font-size: clamp(1.08rem, 1.5vw, 1.28rem); max-width: 720px; }
+    .gradient-text {
+      background: linear-gradient(110deg, #ffffff 12%, #b6aaff 48%, #69e2d4 88%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid transparent;
+      background: rgba(7, 11, 22, .72);
+      backdrop-filter: blur(18px);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 850; letter-spacing: -.025em; }
+    .brand-mark {
+      width: 36px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: linear-gradient(145deg, var(--primary), var(--primary-2));
+      box-shadow: 0 10px 30px rgba(139,124,255,.28);
+      color: #070b16;
+      font-weight: 950;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; color: #c7cede; font-size: .95rem; }
+    .nav-links a:hover { color: white; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.22); }
+    .button-primary {
+      border: none;
+      background: linear-gradient(120deg, var(--primary), #6f5dff 52%, var(--primary-2));
+      color: #070b16;
+      box-shadow: 0 16px 40px rgba(109, 92, 255, .28);
+    }
+    .button-small { min-height: 42px; padding-inline: 18px; border-radius: 12px; }
+
+    .hero { min-height: calc(100vh - 76px); display: grid; align-items: center; padding: 78px 0 92px; position: relative; }
+    .hero-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 64px; align-items: center; }
+    .hero-copy .lead { margin-bottom: 34px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    .mini-note { color: #8f9ab2; font-size: .88rem; margin-top: 15px; }
+
+    .hero-visual { position: relative; min-height: 510px; }
+    .glow {
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 999px;
+      filter: blur(75px);
+      opacity: .24;
+      background: linear-gradient(120deg, var(--primary), var(--primary-2));
+      left: 10%; top: 15%;
+    }
+    .dashboard {
+      position: relative;
+      z-index: 2;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: linear-gradient(155deg, rgba(20,30,55,.93), rgba(10,15,29,.87));
+      box-shadow: var(--shadow);
+      transform: rotate(1.2deg);
+    }
+    .window-bar { display: flex; align-items: center; justify-content: space-between; padding: 2px 2px 16px; }
+    .dots { display: flex; gap: 7px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.22); }
+    .window-title { color: #8792aa; font-size: .75rem; font-weight: 700; }
+    .dash-body { display: grid; gap: 13px; }
+    .metric-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+    .metric, .workflow-card, .site-preview {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      border-radius: 16px;
+    }
+    .metric { padding: 16px; }
+    .metric span { color: #98a3ba; font-size: .7rem; text-transform: uppercase; letter-spacing: .08em; }
+    .metric strong { display: block; margin-top: 7px; font-size: 1.35rem; }
+    .metric em { display: block; color: var(--success); font-size: .7rem; font-style: normal; margin-top: 3px; }
+    .site-preview { padding: 16px; display: grid; grid-template-columns: 1.08fr .92fr; gap: 12px; }
+    .preview-copy, .preview-art { min-height: 180px; border-radius: 12px; }
+    .preview-copy { padding: 18px; background: #0d1427; }
+    .preview-copy .line { height: 8px; border-radius: 9px; background: rgba(255,255,255,.12); margin-bottom: 9px; }
+    .preview-copy .line:nth-child(1) { width: 40%; background: rgba(139,124,255,.75); }
+    .preview-copy .line:nth-child(2) { width: 92%; height: 17px; }
+    .preview-copy .line:nth-child(3) { width: 78%; height: 17px; }
+    .preview-copy .line:nth-child(4) { width: 72%; margin-top: 20px; }
+    .preview-copy .pill { width: 90px; height: 30px; border-radius: 9px; background: linear-gradient(120deg, var(--primary), var(--primary-2)); margin-top: 20px; }
+    .preview-art {
+      background:
+        radial-gradient(circle at 35% 35%, rgba(139,124,255,.7), transparent 23%),
+        radial-gradient(circle at 68% 63%, rgba(72,215,198,.6), transparent 22%),
+        #10182b;
+      border: 1px solid rgba(255,255,255,.07);
+    }
+    .workflow-card { padding: 14px 16px; }
+    .workflow-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .workflow-head strong { font-size: .86rem; }
+    .live { color: var(--success); font-size: .72rem; }
+    .flow { display: flex; align-items: center; gap: 8px; }
+    .flow-step { flex: 1; padding: 9px 8px; text-align: center; border-radius: 10px; background: #0b1223; color: #b6bfd1; font-size: .65rem; border: 1px solid var(--line); }
+    .flow-arrow { color: #647088; }
+
+    .trust-strip { border-block: 1px solid var(--line); background: rgba(255,255,255,.018); }
+    .trust-inner { min-height: 96px; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .trust-label { color: #8f9ab2; font-size: .86rem; }
+    .trust-points { display: flex; flex-wrap: wrap; gap: 18px 34px; color: #d6dbea; font-weight: 700; font-size: .92rem; }
+    .trust-points span::before { content: "✦"; color: var(--primary-2); margin-right: 9px; }
+
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 48px; }
+    .section-head > div { max-width: 760px; }
+    .section-head p { max-width: 470px; color: var(--muted); margin-bottom: 4px; }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(150deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+      min-height: 330px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      right: -70px;
+      bottom: -75px;
+      background: var(--primary);
+      filter: blur(55px);
+      opacity: .15;
+    }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(139,124,255,.14);
+      border: 1px solid rgba(139,124,255,.3);
+      margin-bottom: 60px;
+      font-size: 1.25rem;
+    }
+    .card p { color: var(--muted); margin-bottom: 22px; }
+    .card ul { padding: 0; margin: 0; list-style: none; display: grid; gap: 9px; color: #d7dceb; font-size: .92rem; }
+    .card li::before { content: "↳"; color: var(--primary-2); margin-right: 8px; }
+
+    .outcomes { display: grid; grid-template-columns: .85fr 1.15fr; gap: 55px; align-items: start; }
+    .sticky-copy { position: sticky; top: 110px; }
+    .outcome-list { display: grid; gap: 14px; }
+    .outcome {
+      padding: 22px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .outcome-num { color: #8e82ff; font-weight: 900; font-size: .8rem; padding-top: 4px; }
+    .outcome h3 { margin-bottom: 8px; font-size: 1.25rem; }
+    .outcome p { color: var(--muted); margin-bottom: 0; }
+
+    .process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: steps; }
+    .step { padding: 25px; border-top: 1px solid rgba(255,255,255,.24); counter-increment: steps; }
+    .step::before { content: "0" counter(steps); display: block; color: var(--primary-2); font-size: .78rem; font-weight: 900; margin-bottom: 38px; }
+    .step p { color: var(--muted); font-size: .94rem; }
+
+    .waitlist-wrap {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 4% 5%, rgba(139,124,255,.24), transparent 30%),
+        radial-gradient(circle at 96% 100%, rgba(72,215,198,.18), transparent 30%),
+        var(--panel-solid);
+      box-shadow: var(--shadow);
+      padding: 62px;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 58px;
+    }
+    .waitlist-copy p { color: var(--muted); max-width: 470px; }
+    .benefits { display: grid; gap: 12px; margin-top: 28px; }
+    .benefit { display: flex; align-items: center; gap: 11px; color: #dce1ed; font-size: .93rem; }
+    .check { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: rgba(72,215,198,.13); color: var(--primary-2); font-size: .72rem; }
+
+    .form-card { padding: 24px; border: 1px solid var(--line); border-radius: 20px; background: rgba(7,11,22,.66); }
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .field { display: grid; gap: 7px; }
+    .field-full { grid-column: 1 / -1; }
+    label { color: #cbd2e1; font-size: .78rem; font-weight: 800; }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.12);
+      background: #0a1121;
+      color: white;
+      border-radius: 12px;
+      padding: 13px 14px;
+      outline: none;
+    }
+    textarea { min-height: 104px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(139,124,255,.12); }
+    .form-card .button { width: 100%; margin-top: 15px; }
+    .form-note { color: #7f8aa1; font-size: .72rem; text-align: center; margin: 10px 0 0; }
+
+    .faq { display: grid; grid-template-columns: .72fr 1.28fr; gap: 60px; }
+    details { border-bottom: 1px solid var(--line); padding: 20px 0; }
+    summary { cursor: pointer; font-weight: 800; font-size: 1.04rem; list-style: none; display: flex; justify-content: space-between; gap: 20px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--primary-2); }
+    details[open] summary::after { content: "–"; }
+    details p { color: var(--muted); padding-right: 35px; margin: 14px 0 0; }
+
+    footer { border-top: 1px solid var(--line); padding: 34px 0; color: #8f9ab2; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 950px) {
+      .hero-grid, .waitlist-wrap, .outcomes, .faq { grid-template-columns: 1fr; }
+      .hero { min-height: auto; }
+      .hero-visual { min-height: auto; }
+      .cards { grid-template-columns: 1fr; }
+      .card { min-height: auto; }
+      .card-icon { margin-bottom: 34px; }
+      .process { grid-template-columns: repeat(2, 1fr); }
+      .sticky-copy { position: static; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(calc(100% - 26px), var(--max)); }
+      .section { padding: 76px 0; }
+      .nav-links a:not(.button) { display: none; }
+      .hero { padding-top: 54px; }
+      .hero-grid { gap: 45px; }
+      .metric-row { grid-template-columns: 1fr; }
+      .site-preview { grid-template-columns: 1fr; }
+      .preview-art { min-height: 130px; }
+      .flow { display: grid; grid-template-columns: 1fr; }
+      .flow-arrow { transform: rotate(90deg); text-align: center; }
+      .trust-inner { align-items: flex-start; flex-direction: column; padding: 24px 0; }
+      .process { grid-template-columns: 1fr; }
+      .waitlist-wrap { padding: 28px 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field-full { grid-column: auto; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+      h1 { font-size: clamp(3rem, 16vw, 4.5rem); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Nimblora home">
+        <span class="brand-mark">N</span>
+        <span>Nimblora</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
+        <a class="button button-primary button-small" href="#waitlist">Join waitlist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Websites + AI automation</span>
+          <h1><span class="gradient-text">Websites that sell.</span><br />Systems that scale.</h1>
+          <p class="lead">Nimblora helps ambitious service businesses launch a sharper online presence and automate the repetitive work behind every new lead.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#waitlist">Get founding-client access →</a>
+            <a class="button" href="#services">See what we build</a>
+          </div>
+          <p class="mini-note">Limited early-access projects. No spam. Just launch updates and first access.</p>
+        </div>
+
+        <div class="hero-visual reveal" aria-label="Illustration of a website and automation dashboard">
+          <div class="glow"></div>
+          <div class="dashboard">
+            <div class="window-bar">
+              <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <span class="window-title">nimblora / growth-system</span>
+            </div>
+            <div class="dash-body">
+              <div class="metric-row">
+                <div class="metric"><span>Website</span><strong>Live</strong><em>Conversion-ready</em></div>
+                <div class="metric"><span>Lead flow</span><strong>24/7</strong><em>Always responding</em></div>
+                <div class="metric"><span>Admin</span><strong>Less</strong><em>More time saved</em></div>
+              </div>
+              <div class="site-preview">
+                <div class="preview-copy">
+                  <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="pill"></div>
+                </div>
+                <div class="preview-art"></div>
+              </div>
+              <div class="workflow-card">
+                <div class="workflow-head"><strong>New lead workflow</strong><span class="live">● Active</span></div>
+                <div class="flow">
+                  <span class="flow-step">Form submitted</span><span class="flow-arrow">→</span>
+                  <span class="flow-step">AI qualifies</span><span class="flow-arrow">→</span>
+                  <span class="flow-step">CRM updated</span><span class="flow-arrow">→</span>
+                  <span class="flow-step">Follow-up sent</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container trust-inner">
+        <span class="trust-label">Built for service businesses that want to move faster</span>
+        <div class="trust-points">
+          <span>Modern web design</span>
+          <span>Lead automation</span>
+          <span>AI-powered workflows</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">What we build</span>
+            <h2>Your digital front door—and the system behind it.</h2>
+          </div>
+          <p>Start with the piece you need most, or combine everything into one connected client-acquisition system.</p>
+        </div>
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card-icon">↗</div>
+            <h3>Conversion websites</h3>
+            <p>Fast, focused websites designed to explain your offer clearly and turn attention into action.</p>
+            <ul>
+              <li>Landing pages and business sites</li>
+              <li>Mobile-first responsive design</li>
+              <li>Clear calls to action</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon">◎</div>
+            <h3>AI lead systems</h3>
+            <p>Capture, qualify, route, and follow up with leads automatically—even when your team is offline.</p>
+            <ul>
+              <li>Smart intake and qualification</li>
+              <li>Email and CRM follow-up</li>
+              <li>Booking and notification flows</li>
+            </ul>
+          </article>
+          <article class="card reveal">
+            <div class="card-icon">⌁</div>
+            <h3>Custom automation</h3>
+            <p>Connect the tools you already use and remove the manual steps slowing your business down.</p>
+            <ul>
+              <li>Workflow audits and mapping</li>
+              <li>Tool-to-tool integrations</li>
+              <li>Simple dashboards and handoff</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container outcomes">
+        <div class="sticky-copy reveal">
+          <span class="eyebrow">The goal</span>
+          <h2>Make your business easier to buy from—and easier to run.</h2>
+          <p class="lead">Technology should remove friction, not create more of it.</p>
+        </div>
+        <div class="outcome-list">
+          <article class="outcome reveal"><span class="outcome-num">01</span><div><h3>Look credible from the first click</h3><p>A polished website gives prospects the clarity and confidence they need to take the next step.</p></div></article>
+          <article class="outcome reveal"><span class="outcome-num">02</span><div><h3>Respond while interest is high</h3><p>Automated follow-up helps prevent good leads from going cold because nobody replied quickly enough.</p></div></article>
+          <article class="outcome reveal"><span class="outcome-num">03</span><div><h3>Stop repeating the same admin</h3><p>Move routine data, messages, and updates automatically so your attention stays on higher-value work.</p></div></article>
+          <article class="outcome reveal"><span class="outcome-num">04</span><div><h3>Build a system you can grow into</h3><p>Start lean, prove what works, then add smarter workflows as your sales process matures.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow">Simple process</span>
+            <h2>From idea to working system.</h2>
+          </div>
+          <p>Clear milestones, focused decisions, and no unnecessary technical overwhelm.</p>
+        </div>
+        <div class="process">
+          <article class="step reveal"><h3>Discover</h3><p>We map your offer, customers, bottlenecks, and the result the project needs to create.</p></article>
+          <article class="step reveal"><h3>Design</h3><p>We shape the message, page structure, visual direction, and automation logic.</p></article>
+          <article class="step reveal"><h3>Build</h3><p>We create the website, connect the workflow, and test the key customer journey.</p></article>
+          <article class="step reveal"><h3>Launch</h3><p>You receive a working setup, practical handoff, and a clear path for the next iteration.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="waitlist">
+      <div class="container">
+        <div class="waitlist-wrap reveal">
+          <div class="waitlist-copy">
+            <span class="eyebrow">Founding-client waitlist</span>
+            <h2>Be first in line when projects open.</h2>
+            <p>Tell us what you want to improve. Early members get priority access to launch slots and founding-client offers.</p>
+            <div class="benefits">
+              <div class="benefit"><span class="check">✓</span><span>Priority access to the first project slots</span></div>
+              <div class="benefit"><span class="check">✓</span><span>Early-stage pricing and direct founder access</span></div>
+              <div class="benefit"><span class="check">✓</span><span>A focused recommendation for your best first build</span></div>
+            </div>
+          </div>
+
+          <form class="form-card" id="waitlist-form" name="waitlist" method="POST" action="#">
+            <input type="hidden" name="_subject" value="New Nimblora waitlist signup" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" id="form-next" name="_next" value="" />
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+            <div class="form-grid">
+              <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" placeholder="Your name" required /></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required /></div>
+              <div class="field"><label for="company">Company</label><input id="company" name="company" type="text" autocomplete="organization" placeholder="Company name" /></div>
+              <div class="field"><label for="interest">Main interest</label><select id="interest" name="interest" required><option value="" selected disabled>Choose one</option><option>Website</option><option>AI lead system</option><option>Custom automation</option><option>Website + automation</option><option>Not sure yet</option></select></div>
+              <div class="field field-full"><label for="message">What would you like to improve?</label><textarea id="message" name="message" placeholder="A few details about your business, current setup, and goal..."></textarea></div>
+            </div>
+            <button class="button button-primary" type="submit">Join the waitlist →</button>
+            <p class="form-note">By joining, you agree to receive occasional launch updates. Unsubscribe anytime.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq">
+        <div class="reveal">
+          <span class="eyebrow">Questions</span>
+          <h2>Good to know.</h2>
+        </div>
+        <div class="reveal">
+          <details><summary>Who is Nimblora for?</summary><p>Nimblora is designed for service businesses, consultants, agencies, and small teams that need a stronger website, smarter lead handling, or less repetitive admin.</p></details>
+          <details><summary>Can I start with only a website?</summary><p>Yes. You can launch with a focused website first and add automation later. The build can be planned so future integrations are easier.</p></details>
+          <details><summary>What kinds of tasks can be automated?</summary><p>Common examples include lead capture, qualification, CRM updates, email follow-up, appointment booking, internal alerts, client onboarding, and recurring reporting.</p></details>
+          <details><summary>What happens after I join the waitlist?</summary><p>You will receive a confirmation, then launch updates and an invitation to discuss your project when founding-client slots become available.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#top"><span class="brand-mark">N</span><span>Nimblora</span></a>
+      <span>© <span id="year"></span> Nimblora. Websites that sell. Systems that scale.</span>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const waitlistForm = document.getElementById('waitlist-form');
+    const formEndpoint = window.NIMBLORA_CONFIG?.formEndpoint || '';
+    const endpointConfigured = formEndpoint && !formEndpoint.includes('REPLACE_WITH_YOUR_EMAIL');
+
+    if (endpointConfigured) {
+      waitlistForm.action = formEndpoint;
+      document.getElementById('form-next').value = new URL('success.html', window.location.href).href;
+    } else {
+      waitlistForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        alert('Waitlist setup is not finished yet. Add your receiving email address in config.js.');
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
